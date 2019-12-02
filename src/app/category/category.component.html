@@ -1,0 +1,35 @@
+<div class="example-container mat-elevation-z8">
+    <div class="example-loading-shade" *ngIf="isLoadingResults">
+        <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+    </div>
+    <div class="button-row">
+        <a mat-flat-button color="primary" [routerLink]="['/category']">
+            <mat-icon>listado</mat-icon>
+        </a>
+    </div>
+    <mat-card class="example-card">
+        <mat-card-header>
+            <mat-card-title>
+                <h2>{{category.catName}}</h2>
+            </mat-card-title>
+            <mat-card-subtitle>{{category.catDesc}}</mat-card-subtitle>
+        </mat-card-header>
+        <img mat-card-image src="{{category.catImgUrl}}" alt="{{category.catName}}">
+        <mat-card-content>
+            <dl>
+                <dt>Contenido:</dt>
+                <dd [innerHTML]="category.catContent"></dd>
+                <dt>Actualizada:</dt>
+                <dd>{{category.updated | date}}</dd>
+            </dl>
+        </mat-card-content>
+        <mat-card-actions>
+            <a mat-flat-button color="primary" [routerLink]="['/category/edit', category?.id  || 'all']">
+                <mat-icon>Editar</mat-icon>
+            </a>
+            <a mat-flat-button color="warn" (click)="deleteCategory(category.id)">
+                <mat-icon>Borrar</mat-icon>
+            </a>
+        </mat-card-actions>
+    </mat-card>
+</div>

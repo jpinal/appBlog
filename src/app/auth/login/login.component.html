@@ -1,0 +1,37 @@
+<!-- NOTA: En el proceso previo de investigación para hacer el trabajo final encontré la "Angular Material" que me en mi opinión
+tenía elementos visuales más atractivos que bootstrapp. Comencé con el proyecto y una las cosas que necesitaba para esta librería
+era que tenía que utilizar archivos .scss, hasta ahí bien, el problema ha sido la utilización de estas etiquetas para hacer el
+formulario y volver para atrás era más difícil. He utilizado varios tutoriales para sacer esto y en el resto de formularios está
+repliado y adaptado. Saludos -->
+
+
+<div class="example-container mat-elevation-z8">
+    <div class="example-loading-shade" *ngIf="isLoadingResults">
+        <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+    </div>
+    <mat-card class="example-card">
+        <form [formGroup]="loginForm" (ngSubmit)="onFormSubmit(loginForm.value)">
+            <mat-form-field class="example-full-width">
+                <input matInput type="email" placeholder="Email" formControlName="usuario"
+                    [errorStateMatcher]="matcher">
+                <mat-error>
+                    <span *ngIf="!loginForm.get('usuario').valid && loginForm.get('usuario').touched">Usuario</span>
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+                <input matInput type="Contraseña" placeholder="Contraseña" formControlName="Contraseña"
+                    [errorStateMatcher]="matcher">
+                <mat-error>
+                    <span *ngIf="!loginForm.get('Contraseña').valid && loginForm.get('Contraseña').touched">
+                        Contraseña</span>
+                </mat-error>
+            </mat-form-field>
+            <div class="button-row">
+                <button type="submit" [disabled]="!loginForm.valid" mat-flat-button color="primary">Login</button>
+            </div>
+            <div class="button-row">
+                <button type="button" mat-flat-button color="primary" (click)="register()">Registro</button>
+            </div>
+        </form>
+    </mat-card>
+</div>
